@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { AddScreen } from "../components/screens/AddScreen/AddScreen";
 import { AddSubscriptionScreen } from "../components/screens/AddSubscriptionScreen";
+import { AddToHomeScreen } from "../components/screens/AddToHomeScreen";
 import { ChangePasswordScreen } from "../components/screens/ChangePasswordScreen";
 import { EnterConfirmationCodeScreen } from "../components/screens/EnterConfirmationCodeScreen";
 import { FrogManagerScreen } from "../components/screens/FrogScreens/FrogManagerScreen";
@@ -355,6 +356,7 @@ function RouterImpl(): JSX.Element {
           <Route path="add" element={<AddScreen />} />
           <Route path="prove" element={<ProveScreen />} />
           <Route path="scan" element={<ScanScreen />} />
+          <Route path="add-to-home" element={<AddToHomeScreen />} />
           {/* This route is used by non-Devconnect tickets */}
           <Route path="verify" element={<SecondPartyTicketVerifyScreen />} />
           {/* This route is used to check in a Devconnect ticket with only

@@ -60,6 +60,10 @@ export function SettingsModal({
               Import
             </LinkButton>
             <Spacer h={16} />
+            <LinkButton $primary={true} to="add-to-home" onClick={close}>
+              Add to Home Screen
+            </LinkButton>
+            <Spacer h={16} />
           </>
         )}
 

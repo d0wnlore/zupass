@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import Select, { components } from "react-select";
-import { CenterColumn, H1, Spacer, TextCenter } from "../core";
+import { CenterColumn, H2, Spacer, TextCenter } from "../core";
 import { AppContainer } from "../shared/AppContainer";
+import { ScreenNavigation } from "../shared/ScreenNavigation";
 
 export function AddToHomeScreen(): JSX.Element {
   const icons = [
@@ -15,30 +16,63 @@ export function AddToHomeScreen(): JSX.Element {
       value: "/images/icons/zuzalu.png",
       label: "Zuzalu",
       icon: "/images/icons/zuzalu.png"
+    },
+    {
+      value: "/images/icons/vitalia.png",
+      label: "Vitalia",
+      icon: "/images/icons/vitalia.png"
+    },
+    {
+      value: "/images/icons/edgecitydenver.png",
+      label: "Edge City Denver",
+      icon: "/images/icons/edgecitydenver.png"
+    },
+    {
+      value: "/images/icons/frogcrypto.png",
+      label: "FrogCrypto",
+      icon: "/images/icons/frogcrypto.png"
     }
   ];
   const [icon, setIcon] = useState(icons[0]);
 
   return (
     <AppContainer bg="gray">
+      <ScreenNavigation label={"Home"} to="/" />
       <Helmet>
         <link rel="apple-touch-icon" href={icon.value} />
       </Helmet>
       <CenterColumn w={290}>
         <TextCenter>
           <Spacer h={64} />
-          <H1>Add to Home Screen</H1>
-          <p>
-            Select an icon and use your browser’s “Add to Home Screen”
-            functionality to install Zupass as a Progressive Web App (PWA).
-          </p>
+          <H2>Add to Home Screen</H2>
+          <Spacer h={16} />
           <Select
             value={icon}
             onChange={setIcon}
             options={icons}
-            components={{ Option: IconOption }}
+            components={{ Option: IconOption, SingleValue }}
           />
+          <Spacer h={16} />
+          <ol style={{ textAlign: "left" }}>
+            <li>Choose an icon</li>
+            <li>Tap the Share button</li>
+            <li>Tap Add to Home Screen</li>
+            <li>Enjoy a more native Zupass experience</li>
+          </ol>
         </TextCenter>
+        <Spacer h={16} />
+        <img
+          style={{
+            display: "block",
+            textAlign: "center",
+            margin: "0 auto",
+            borderRadius: "12px"
+          }}
+          src={icon.value}
+          alt={icon.label}
+          width="64"
+          height="64"
+        />
       </CenterColumn>
     </AppContainer>
   );
@@ -46,7 +80,46 @@ export function AddToHomeScreen(): JSX.Element {
 
 const IconOption = ({ data, ...props }) => (
   <components.Option {...props}>
-    <img src={data.icon} alt={data.label} width="20" height="20" />
-    {data.label}
+    <div>
+      <img
+        src={data.icon}
+        alt={data.label}
+        width="20"
+        height="20"
+        style={{ borderRadius: "3px" }}
+      />
+      <span
+        style={{
+          color: "#19473f",
+          marginLeft: "10px",
+          display: "inline-block"
+        }}
+      >
+        {data.label}
+      </span>
+    </div>
   </components.Option>
+);
+
+const SingleValue = ({ data, ...props }) => (
+  <components.SingleValue {...props}>
+    <div>
+      <img
+        src={data.icon}
+        alt={data.label}
+        width="20"
+        height="20"
+        style={{ borderRadius: "3px" }}
+      />
+      <span
+        style={{
+          color: "#19473f",
+          marginLeft: "10px",
+          display: "inline-block"
+        }}
+      >
+        {data.label}
+      </span>
+    </div>
+  </components.SingleValue>
 );

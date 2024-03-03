@@ -1,5 +1,4 @@
 import { ReactNode, useCallback } from "react";
-import { Helmet } from "react-helmet";
 import { Toaster } from "react-hot-toast";
 import styled, { createGlobalStyle } from "styled-components";
 import {
@@ -30,9 +29,6 @@ export function AppContainer({
   return (
     <>
       <GlobalBackground color={col} />
-      <Helmet>
-        <link rel="apple-touch-icon" href="/apple-touch-icon.pn" />
-      </Helmet>
       <Background>
         <CenterColumn>
           {children && (

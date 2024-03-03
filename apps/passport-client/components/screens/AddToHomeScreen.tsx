@@ -1,16 +1,28 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import Select, { components } from "react-select";
 import { CenterColumn, H1, Spacer, TextCenter } from "../core";
 import { AppContainer } from "../shared/AppContainer";
 
 export function AddToHomeScreen(): JSX.Element {
-  const icons = ["icon1.png", "icon2.png", "icon3.png"];
+  const icons = [
+    {
+      value: "/images/icons/zupass.png",
+      label: "Zupass",
+      icon: "/images/icons/zupass.png"
+    },
+    {
+      value: "/images/icons/zuzalu.png",
+      label: "Zuzalu",
+      icon: "/images/icons/zuzalu.png"
+    }
+  ];
   const [icon, setIcon] = useState(icons[0]);
 
   return (
     <AppContainer bg="gray">
       <Helmet>
-        <link rel="apple-touch-icon" href={icon} />
+        <link rel="apple-touch-icon" href={icon.value} />
       </Helmet>
       <CenterColumn w={290}>
         <TextCenter>
@@ -20,15 +32,21 @@ export function AddToHomeScreen(): JSX.Element {
             Select an icon and use your browser’s “Add to Home Screen”
             functionality to install Zupass as a Progressive Web App (PWA).
           </p>
-          <select value={icon} onChange={(e) => setIcon(e.target.value)}>
-            {icons.map((icon, index) => (
-              <option key={index} value={icon}>
-                {icon}
-              </option>
-            ))}
-          </select>
+          <Select
+            value={icon}
+            onChange={setIcon}
+            options={icons}
+            components={{ Option: IconOption }}
+          />
         </TextCenter>
       </CenterColumn>
     </AppContainer>
   );
 }
+
+const IconOption = ({ data, ...props }) => (
+  <components.Option {...props}>
+    <img src={data.icon} alt={data.label} width="20" height="20" />
+    {data.label}
+  </components.Option>
+);
